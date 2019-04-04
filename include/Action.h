@@ -15,38 +15,38 @@ class Restaurant;
 
 class BaseAction{
 public:
-    BaseAction();
-    virtual BaseAction* clone()=0;
-    virtual ~BaseAction()=0;
-    ActionStatus getStatus() const;
-    virtual void act(Restaurant& restaurant)=0;
-    virtual std::string toString() const=0;
-    void setArgument(string input);
-    string getArgument();
-    void setErrorMsg(string msg);
+    	BaseAction();
+    	virtual BaseAction* clone()=0;
+    	virtual ~BaseAction()=0;
+    	ActionStatus getStatus() const;
+    	virtual void act(Restaurant& restaurant)=0;
+    	virtual std::string toString() const=0;
+    	void setArgument(string input);
+    	string getArgument();
+    	void setErrorMsg(string msg);
 
 protected:
-    void complete();
-    void error(std::string errorMsg);
-    std::string getErrorMsg() const;
-    string argument;
+    	void complete();
+    	void error(std::string errorMsg);
+    	std::string getErrorMsg() const;
+    	string argument;
 
 
 private:
-    std::string errorMsg;
-    ActionStatus status;
+    	std::string errorMsg;
+    	ActionStatus status;
 };
 
 
 class OpenTable : public BaseAction {
 public:
-    OpenTable(int id, std::vector<Customer *> &customersList);
-    OpenTable(const OpenTable &otherTable);                                      ///COPY CONSTRUCTOR
+    	OpenTable(int id, std::vector<Customer *> &customersList);
+    	OpenTable(const OpenTable &otherTable);                                      ///COPY CONSTRUCTOR
 	OpenTable(const OpenTable &&otherTable);                                     ///MOVE CONSTRUCTOR
 	virtual BaseAction* clone();
-    void act(Restaurant &restaurant);
-    std::string toString() const;
-    ~OpenTable();
+    	void act(Restaurant &restaurant);
+    	std::string toString() const;
+    	~OpenTable();
 private:
 	const int tableId;
 	std::vector<Customer *> customers;
@@ -55,105 +55,105 @@ private:
 
 class Order : public BaseAction {
 public:
-    Order(int id);
+    	Order(int id);
 	virtual BaseAction* clone();
-    ~Order();
-    void act(Restaurant &restaurant);
-    std::string toString() const;
+    	~Order();
+    	void act(Restaurant &restaurant);
+    	std::string toString() const;
 private:
-    const int tableId;
+    	const int tableId;
 };
 
 
 class MoveCustomer : public BaseAction {
 public:
-    MoveCustomer(int src, int dst, int customerId);
+    	MoveCustomer(int src, int dst, int customerId);
 	virtual BaseAction* clone();
 	~MoveCustomer();
-    void act(Restaurant &restaurant);
-    std::string toString() const;
+    	void act(Restaurant &restaurant);
+    	std::string toString() const;
 private:
-    const int srcTable;
-    const int dstTable;
-    const int id;
+    	const int srcTable;
+    	const int dstTable;
+    	const int id;
 };
 
 
 class Close : public BaseAction {
 public:
-    Close(int id);
+    	Close(int id);
 	virtual BaseAction* clone();
 	~Close();
-    void act(Restaurant &restaurant);
-    std::string toString() const;
+    	void act(Restaurant &restaurant);
+    	std::string toString() const;
 private:
-    const int tableId;
+    	const int tableId;
 };
 
 
 class CloseAll : public BaseAction {
 public:
-    CloseAll();
+    	CloseAll();
 	virtual BaseAction* clone();
 	~CloseAll();
-    void act(Restaurant &restaurant);
-    std::string toString() const;
+    	void act(Restaurant &restaurant);
+    	std::string toString() const;
 private:
 };
 
 
 class PrintMenu : public BaseAction {
 public:
-    PrintMenu();
+    	PrintMenu();
 	virtual BaseAction* clone();
 	~PrintMenu();
-    void act(Restaurant &restaurant);
-    std::string toString() const;
+    	void act(Restaurant &restaurant);
+    	std::string toString() const;
 private:
 };
 
 
 class PrintTableStatus : public BaseAction {
 public:
-    PrintTableStatus(int id);
+    	PrintTableStatus(int id);
 	virtual BaseAction* clone();
 	~PrintTableStatus();
-    void act(Restaurant &restaurant);
-    std::string toString() const;
+    	void act(Restaurant &restaurant);
+    	std::string toString() const;
 private:
-    const int tableId;
+    	const int tableId;
 };
 
 
 class PrintActionsLog : public BaseAction {
 public:
-    PrintActionsLog();
+    	PrintActionsLog();
 	virtual BaseAction* clone();
 	~PrintActionsLog();
-    void act(Restaurant &restaurant);
-    std::string toString() const;
+    	void act(Restaurant &restaurant);
+    	std::string toString() const;
 private:
 };
 
 
 class BackupRestaurant : public BaseAction {
 public:
-    BackupRestaurant();
+    	BackupRestaurant();
 	virtual BaseAction* clone();
 	~BackupRestaurant();
-    void act(Restaurant &restaurant);
-    std::string toString() const;
+    	void act(Restaurant &restaurant);
+    	std::string toString() const;
 private:
 };
 
 
 class RestoreResturant : public BaseAction {
 public:
-    RestoreResturant();
+    	RestoreResturant();
 	virtual BaseAction* clone();
 	~RestoreResturant();
-    void act(Restaurant &restaurant);
-    std::string toString() const;
+    	void act(Restaurant &restaurant);
+    	std::string toString() const;
 
 };
 
